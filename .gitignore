@@ -1,0 +1,14 @@
+.idea
+node_modules
+public/files
+package-lock.json
+package.json
+fonts
+logs
+media
+test.php
+/vendor/
+/src/Config/dev.php
+.htaccess
+composer.lock
+composer.phar
