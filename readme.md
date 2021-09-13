@@ -13,11 +13,11 @@ EventDispatcher::dispatch(EventInterface $event, bool $async = false);
 >typehint object -> на EventInterface; nonstatic -> static методы + async. Для удобства взаимодействия.
 
 Вы можете сами описать ```EventInterface``` или воспользоваться базовым классом 
-```...\EventDispatcher\Event```, в котором уже определено всё необходимое (рекомендуется).
+```Merexo\EventDispatcher\Event```, в котором уже определено всё необходимое (рекомендуется).
 ### Event
-Правильное использование базового класса ```...\EventDispatcher\Event``` для создания нового события:
+Правильное использование базового класса ```Merexo\EventDispatcher\Event``` для создания нового события:
 ```php
-use ...\EventDispatcher\Event;
+use Merexo\EventDispatcher\Event;
 
 class BotStarted extends Event
 {
@@ -36,9 +36,9 @@ class BotStarted extends Event
 
 Пример:
 ```php
-use ...\EventDispatcher\Enums\Priority;
-use ...\EventDispatcher\EventDispatcher;
-use ...\EventDispatcher\Interfaces\ListenersInitInterface;
+use Merexo\EventDispatcher\Enums\Priority;
+use Merexo\EventDispatcher\EventDispatcher;
+use Merexo\EventDispatcher\Interfaces\ListenersInitInterface;
 
 class Listeners implements ListenersInitInterface
 {
@@ -95,8 +95,8 @@ EventDispatcher::attach(TriggerMessageNew::class, [Test::class, "testCustomMetho
 
 Пример:
 ```php
-use ...\EventDispatcher\Interfaces\EventInterface;
-use ...\EventDispatcher\Interfaces\ListenerInterface;
+use Merexo\EventDispatcher\Interfaces\EventInterface;
+use Merexo\EventDispatcher\Interfaces\ListenerInterface;
 
 class MyListener implements ListenerInterface
 {
@@ -120,12 +120,12 @@ class MyListener implements ListenerInterface
 ```php
 EventDispatcher::attach(
     Events::ALL, 
-    ...\Listener\Logger::class, 
+    Merexo\Listener\Logger::class, 
     Priority::HIGH
 );
 ```
 ### Остановка обработки события
-Если вам необходимо закончить обработку события на конкретном слушателе, используйте метод ```$event->stopPropagation(bool $flag = true)```, где ```$event``` - реализация интерфейса ```EventInterface``` или основного базового класса ```...\EventDispatcher\Event```
+Если вам необходимо закончить обработку события на конкретном слушателе, используйте метод ```$event->stopPropagation(bool $flag = true)```, где ```$event``` - реализация интерфейса ```EventInterface``` или основного базового класса ```Merexo\EventDispatcher\Event```
 ### Проверка остановленной обработки события
 Для проверки флага остановки обработки события используйте метод ```$event->isPropagationStopped()```. В данном случае рекомендуется использовать ```$event``` как реализованный потомок базового класса ```Event```. Но также есть возможность определить своё событие от интерфейса ```StoppableEventInterface``` (PSR-14).
 ### Приоритет выполнения | Ранг
